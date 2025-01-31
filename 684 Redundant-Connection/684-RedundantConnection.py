@@ -1,8 +1,6 @@
 class Solution:
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
         # thinking it thorugh
-        # parse through each edge one by one
-        # 
 
         adj = defaultdict(list)
 
@@ -28,9 +26,12 @@ class Solution:
 
 
         n = len(edges)
+        # parse through each edge one by one
         for u, v in edges:
 
             visited = [False] * (n+1)
+            # if the node already exists in adj and a path exists between the nodes 
+            # then that means the new edge getting created will cause a cycle and is the redundant one.
             if u in adj and v in adj and dfs(u, v, visited):
                 return [u, v]
             else:
